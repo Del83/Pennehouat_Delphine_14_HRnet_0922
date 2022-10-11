@@ -1,0 +1,76 @@
+/*-------------------- HEADER --------------------*/
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 170px;
+}
+
+.logo-ctn {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    height: 180px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+.logo-create{ 
+    height: 40px;    
+}
+
+.header-ctn {
+    padding-right: 20px;
+    gap: 20px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+
+  /*-------------------- SIDE --------------------*/
+
+  .side {
+    padding-top: 150px;
+    position: absolute;
+  }
+
+.side-icon {
+    height: 40px; 
+    padding-right: 10px;
+}
+
+.side-ctn {
+    display: grid;
+    row-gap: 40px;
+}
+
+.side-section {
+    display: flex;
+    align-items: center;
+    width: 230px;
+    justify-content: center;
+}
+
+.active {
+    background-color: rgba(147, 173, 24, 0.15);
+    border-radius: 0 10px 10px 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/*-------------------- FOOTER --------------------*/
+
+.footer {
+    letter-spacing: 5px;
+    margin-left: 270px;
+    margin-top: 50px;
+    font-size: 10px;
+}
