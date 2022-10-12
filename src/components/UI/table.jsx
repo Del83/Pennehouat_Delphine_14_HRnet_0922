@@ -1,8 +1,11 @@
-import ShowEntries from "./tableShow";
-import Search from "./tableSearch";
-import SortingChevron from "./tableSort";
-import Pagination from "./tablePagination";
-import "../../styles/list.css";
+import { useDispatch, useSelector } from "react-redux"
+
+import TableShowed from "./tableShow";
+import TableSearched from "./tableSearch";
+import TableSorted from "./tableSort";
+import TablePaged from "./tablePagination";
+
+import "../../styles/table.css";
 
 const dateConvert = (date) => {
     const slice1 = date.slice(0, 4);
@@ -10,63 +13,31 @@ const dateConvert = (date) => {
     return slice2 + "/" + slice1;
   };
 
-export default function Table( { employeesPerPage, setEmployeesPerPage, searchInput, setSearchInput, employees, setEmployees, currentEmployees, currentPage, setCurrentPage } ) {
-  
+export default function Table( {searchInput, setSearchInput } ) {
+   
+    const employees = useSelector((state) => state.employeeList.data);
+    const currentPage = useSelector((state) => state.employeeList.currentPage) 
+    const employeesPerPage = useSelector((state) => state.employeeList.employeesPerPage) 
+    const indexOfLastEmployee = employeesPerPage * currentPage;
+    const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+    const currentEmployees = employees.slice(indexOfFirstEmployee, indexOfLastEmployee);
+
   return (
       <section className="form-background flex-column">
-        <section className="table-layout-ctn">
-          <ShowEntries
-            employeePerPage={employeesPerPage}
-            setEmployeePerPage={setEmployeesPerPage}
-          />
-          <Search searchInput={searchInput} setSearchInput={setSearchInput} />
-        </section>
-
+            <section className="table-layout-ctn">
+                <TableShowed/>
+                <TableSearched searchInput={searchInput} setSearchInput={setSearchInput} />
+            </section>
         <table className="table-ctn">
-          <thead>
-            <tr>
-              <th scope="col">
-                Name
-                <SortingChevron
-                  data={employees}
-                  setData={setEmployees}
-                  categories="lastName"
-                />
-              </th>
-              <th scope="col">
-                Date of birth
-                <SortingChevron
-                  data={employees}
-                  setData={setEmployees}
-                  categories="birth"
-                />
-              </th>
-              <th scope="col">
-                Address
-                <SortingChevron
-                  data={employees}
-                  setData={setEmployees}
-                  categories="state"
-                />
-              </th>
-              <th scope="col">
-                Date Start
-                <SortingChevron
-                  data={employees}
-                  setData={setEmployees}
-                  categories="dateStart"
-                />
-              </th>
-              <th scope="col">
-                Department
-                <SortingChevron
-                  data={employees}
-                  setData={setEmployees}
-                  categories="department"
-                />
-              </th>
-            </tr>
-          </thead>
+            <thead>
+                <tr>
+                <th scope="col">Name <TableSorted categories="lastName"/></th>
+                <th scope="col">Date of birth <TableSorted categories="birth"/></th>
+                <th scope="col">Address <TableSorted categories="state"/></th>
+                <th scope="col">Date Start <TableSorted categories="dateStart"/></th>
+                <th scope="col">Department <TableSorted categories="department"/></th>
+                </tr>
+            </thead>
           <tbody>
             {currentEmployees.map((employee, index) => (
               <tr key={index}>
@@ -88,12 +59,8 @@ export default function Table( { employeesPerPage, setEmployeesPerPage, searchIn
             ))}
           </tbody>
         </table>
-        <Pagination
-          employeePerPage={employeesPerPage}
-          totalEmployees={employees.length}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+        <TablePaged/>
       </section>
+   
   );
 }
