@@ -1,10 +1,14 @@
 const tableManagement = {
   goPreviousPage: (state) => {
-    state.currentPage--;
+    if (state.currentPage !== 1) {
+      state.currentPage--;
+    }
     return state;
   },
-  goNextPage: (state) => {
-    state.currentPage++;
+  goNextPage: (state, action) => {
+    if (state.currentPage !== action.payload) {
+      state.currentPage++;
+    }
     return state;
   },
   showPerPage: (state, action) => {
@@ -21,11 +25,12 @@ const tableManagement = {
         return { i, value: e.birth };
       } else if (categories === "state") {
         return { i, value: e.state };
-      } else if (categories === "dateStart") {
-        return { i, value: e.dateStart };
+      } else if (categories === "startDate") {
+        return { i, value: e.startDate };
       } else if (categories === "department") {
         return { i, value: e.department };
       }
+      return console.log("error");
     });
     dataMap.sort((a, b) => {
       return a.value > b.value ? 1 : a.value < b.value ? -1 : 0;
@@ -44,11 +49,12 @@ const tableManagement = {
         return { i, value: e.birth };
       } else if (categories === "state") {
         return { i, value: e.state };
-      } else if (categories === "dateStart") {
-        return { i, value: e.dateStart };
+      } else if (categories === "startDate") {
+        return { i, value: e.startDate };
       } else if (categories === "department") {
         return { i, value: e.department };
       }
+      return console.log("error");
     });
     dataMap.sort((a, b) => {
       return a.value > b.value ? -1 : a.value < b.value ? 1 : 0;
@@ -60,7 +66,7 @@ const tableManagement = {
   searchData: (state, action) => {
     let arrayFilter = [];
     const employees = state.data;
-    if (action.payload.length >= 2) {
+    if (action.payload.length >= 3) {
       employees
         .filter((employee) => {
           return (
@@ -83,6 +89,12 @@ const tableManagement = {
       state.data = employees;
     }
     state.searchInput = action.payload;
+    return state;
+  },
+  addEmployee: (state, action) => {
+    const employees = state.data;
+    console.log(action.payload);
+    employees.push(action.payload);
     return state;
   },
 };

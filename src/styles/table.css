@@ -1,12 +1,44 @@
 .flex-column {
     flex-direction: column;
-}
+  }
 
 .table-ctn {
-  background-color: white;
-  width: 96%;
-  margin: 0px 30px 0px 30px
-}
+    background-color: white;
+    width: 96%;
+    margin: 0px 30px 0px 30px
+  }
+
+/*-------------------- HEADER TABLE --------------------*/   
+thead {
+    font-size: 14px;
+    color:  rgba(0, 0, 0, 0.7);; 
+  }
+
+.chevronUp {
+    transform: translateX(8px);
+  }
+
+.chevronDown {
+    transform: translateX(6px) rotate(180deg);
+  }
+
+.chevronUp, .chevronDown {
+    cursor: pointer;
+    font-size: 8px;
+  }
+
+/*-------------------- BODY TABLE --------------------*/  
+tbody {
+    font-size: 12px;
+  }
+
+tbody tr:nth-child(odd) {
+    background-color: rgba(245, 245, 241, 1);
+  }
+  
+tbody tr:nth-child(even) {
+    background-color: white;
+  }
 
 tr {
     display: flex;
@@ -18,65 +50,45 @@ tr {
     padding: 10px;
     letter-spacing: 2px;
     align-items: center;
-}
+  }
 
-td, th {
+  td, th {
     width: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+  }  
 
-tbody {
-    font-size: 12px;
-}
-
-thead {
-    font-size: 14px;
-}
-
-tbody tr:nth-child(odd) {
-    background-color: rgba(245, 245, 241, 1);
-  }
-  
-tbody tr:nth-child(even) {
-    background-color: white;
-  }
-
-.chevronUp {
-    transform: translateX(12px);
-    cursor: pointer;
-  }
-
-.chevronDown {
-    transform: translateX(10px) rotate(180deg);
-    cursor: pointer;
-  }
+/*-------------------- TABLE LAYOUT --------------------*/  
 
 .table-layout-ctn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 13px;
-  letter-spacing: 2px;
-  height: 50px;
-}
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    letter-spacing: 2px;
+    height: 50px;
+  }
 
 .entries-number, .show-entries {
-  margin-left: 30px;
-}
+    margin-left: 30px;
+  }
 
 .pagination, .search {
-  margin-right: 30px;
-}
+    margin-right: 30px;
+  }
 
 b {
-  font-size: 16px;
-  background-color: white;
-  padding: 3px 5px 3px 5px;
-  border-radius: 5px;
-}
+    font-size: 16px;
+    background-color: white;
+    padding: 3px 5px 3px 5px;
+    border-radius: 5px;
+  }
 
 .inactive {
-  color: gray;
-}
+    color: gray;
+  }
+
+.pointer {
+    cursor: pointer;
+  }

@@ -1,20 +1,26 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
-import TableShowed from "./tableShow";
-import TableSearched from "./tableSearch";
-import TableSorted from "./tableSort";
-import TablePaged from "./tablePagination";
+import EntriesDisplayed from "./tableDisplay";
+import SearchInTable from "./tableSearch";
+import SortTable from "./tableSort";
+import PagedOfTable from "./tablePagination";
 
 import "../../styles/table.css";
 
-const dateConvert = (date) => {
+// const dateConvert = (date) => {
+//     const slice1 = date.slice(0, 4);
+//     const slice2 = date.slice(5, 10);
+//     return slice2 + "/" + slice1;
+//   };
+
+  const dateConvert = (date) => {
     const slice1 = date.slice(0, 4);
-    const slice2 = date.slice(5, 10);
-    return slice2 + "/" + slice1;
+    const slice2 = date.slice(5, 7);
+    const slice3 = date.slice(8,10)
+    return slice3 + "/" + slice2 + "/" + slice1;
   };
 
-export default function Table( {searchInput, setSearchInput } ) {
-   
+export default function Table() {
     const employees = useSelector((state) => state.employeeList.data);
     const currentPage = useSelector((state) => state.employeeList.currentPage) 
     const employeesPerPage = useSelector((state) => state.employeeList.employeesPerPage) 
@@ -22,20 +28,21 @@ export default function Table( {searchInput, setSearchInput } ) {
     const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
     const currentEmployees = employees.slice(indexOfFirstEmployee, indexOfLastEmployee);
 
+    console.log(employees);
   return (
       <section className="form-background flex-column">
             <section className="table-layout-ctn">
-                <TableShowed/>
-                <TableSearched searchInput={searchInput} setSearchInput={setSearchInput} />
+                <EntriesDisplayed/>
+                <SearchInTable/>
             </section>
         <table className="table-ctn">
             <thead>
                 <tr>
-                <th scope="col">Name <TableSorted categories="lastName"/></th>
-                <th scope="col">Date of birth <TableSorted categories="birth"/></th>
-                <th scope="col">Address <TableSorted categories="state"/></th>
-                <th scope="col">Date Start <TableSorted categories="dateStart"/></th>
-                <th scope="col">Department <TableSorted categories="department"/></th>
+                <th scope="col">Name <SortTable categories="lastName"/></th>
+                <th scope="col">Date of birth <SortTable categories="birth"/></th>
+                <th scope="col">Address <SortTable categories="state"/></th>
+                <th scope="col">Date Start <SortTable categories="startDate"/></th>
+                <th scope="col">Department <SortTable categories="department"/></th>
                 </tr>
             </thead>
           <tbody>
@@ -51,15 +58,13 @@ export default function Table( {searchInput, setSearchInput } ) {
                     <div>{employee.state + " " + employee.zipCode}</div>
                   </div>
                 </td>
-                <td data-label="Start date">
-                  {dateConvert(employee.dateStart)}
-                </td>
+                <td data-label="Start date">{dateConvert(employee.startDate)}</td>
                 <td data-label="Department">{employee.department}</td>
               </tr>
             ))}
           </tbody>
         </table>
-        <TablePaged/>
+        <PagedOfTable/>
       </section>
    
   );

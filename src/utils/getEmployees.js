@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 // DATA et ACTIONS
-import tableManagement from "./actions";
+import tableManagement from "./actionsTable";
 import { EMPLOYEES_DATA } from "../data/employees";
 
 const initialState = {
@@ -24,4 +24,5 @@ export const {
   sortIncreasing,
   sortDescending,
   searchData,
+  addEmployee,
 } = employeesTableSlice.actions;
