@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
-import { showPerPage } from "../../utils/getEmployees"
-import Dropdown from "./form/form-dropdown"
+import { showPerPage } from "../../feature/employeesTableSlice"
+import InputDropdown from "./form/input-dropdown"
 
 /**
 * Entries displayed
@@ -26,7 +26,7 @@ export default function EntriesDisplayed () {
          <div className="show-entries">
             <span>Show</span> 
                 <b>
-                  < Dropdown
+                  < InputDropdown
                         label="Show"
                         name="show"
                         value={employeesPerPage}

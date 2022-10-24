@@ -1,5 +1,7 @@
+/** IMPORT REACT REDUX */
 import { createSlice } from "@reduxjs/toolkit";
-// DATA et ACTIONS
+
+/** DATA et ACTIONS */
 import tableManagement from "./actionsTable";
 import { EMPLOYEES_DATA } from "../data/employees";
 
@@ -8,7 +10,7 @@ const initialState = {
   currentPage: 1,
   employeesPerPage: 10,
   searchInput: "",
-  //error: null,
+  categories: ["Name", "Date of birth", "Address", "Date start", "Department"],
 };
 
 export const employeesTableSlice = createSlice({

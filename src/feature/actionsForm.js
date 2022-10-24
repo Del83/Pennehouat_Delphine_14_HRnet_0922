@@ -14,14 +14,11 @@ const formManagement = {
       state.state.valid = true;
       return state;
     }
-    return console.log("message error select");
+    return;
   },
   handleInput: (state, action) => {
     const inputValue = action.payload.value;
     const inputName = action.payload.name;
-    const category = action.payload.category.name;
-
-    console.log(category);
 
     if (inputName === "firstName") {
       if (inputValue.match(/^[A-zÀ-ú-,\s]*$/)) {
@@ -40,6 +37,15 @@ const formManagement = {
         return state;
       } else {
         state.lastName.valid = false;
+        return state;
+      }
+    }
+    if (inputName === "birth") {
+      if (inputValue !== "") {
+        state.birth.valid = true;
+        return state;
+      } else {
+        state.street.valid = false;
         return state;
       }
     }
@@ -83,9 +89,13 @@ const formManagement = {
     const inputValue = action.payload.value;
     const inputName = action.payload.name;
     if (inputName === "birth") {
-      state.birth.value = inputValue;
-      state.birth.valid = true;
-      return state;
+      if (inputValue !== "") {
+        state.birth.value = inputValue;
+        state.birth.valid = true;
+        return state;
+      } else {
+        state.birth.valid = false;
+      }
     }
     if (inputName === "startDate") {
       state.startDate.value = inputValue;
@@ -93,30 +103,13 @@ const formManagement = {
       return state;
     }
   },
-  validForm: (state, action) => {
-    if (
-      state.firstName.valid === true &&
-      state.lastName.valid === true &&
-      state.birth.valid === true &&
-      state.street.valid === true &&
-      state.city.valid === true &&
-      state.state.valid === true &&
-      state.zipCode.valid === true &&
-      state.startDate.valid === true &&
-      state.department.valid === true
-    ) {
-      console.log("hello");
-    }
-  },
-  openModal: (state, action) => {
-    state.modal.display = action.payload;
-  },
   reset: (state, action) => {
     state.firstName.value = "";
     state.lastName.value = "";
     state.birth.value = "";
     state.street.value = "";
     state.city.value = "";
+    state.zipCode.value = "";
     state.state.value = "";
     state.startDate.value = "";
     state.department.value = "";

@@ -1,8 +1,12 @@
+/** IMPORT REACT REDUX */
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import CreateEmployee from "./pages/createEmployeecopy";
+/** PAGES */
+import CreateEmployee from "./pages/createEmployee";
 import EmployeesList from "./pages/employeeList";
-import "../src/styles/App.css";
+
+/** STYLE */
+import "../src/styles/index.css";
 
 function App() {
   return (

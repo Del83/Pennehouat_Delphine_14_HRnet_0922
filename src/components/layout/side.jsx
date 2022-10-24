@@ -44,7 +44,7 @@ export default function Side () {
 
     return (
         <section className="side">
-            {currentUrl.pathname.includes("/home") ? createSide() : viewSide()}
+            {currentUrl.pathname.includes("/employees") ? viewSide() : createSide()}
         </section>
     )
 }

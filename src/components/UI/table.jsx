@@ -24,11 +24,12 @@ export default function Table() {
     const employees = useSelector((state) => state.employeeList.data);
     const currentPage = useSelector((state) => state.employeeList.currentPage) 
     const employeesPerPage = useSelector((state) => state.employeeList.employeesPerPage) 
+    const categories = useSelector((state) => state.employeeList.categories)
+
     const indexOfLastEmployee = employeesPerPage * currentPage;
     const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
     const currentEmployees = employees.slice(indexOfFirstEmployee, indexOfLastEmployee);
 
-    console.log(employees);
   return (
       <section className="form-background flex-column">
             <section className="table-layout-ctn">
@@ -38,11 +39,9 @@ export default function Table() {
         <table className="table-ctn">
             <thead>
                 <tr>
-                <th scope="col">Name <SortTable categories="lastName"/></th>
-                <th scope="col">Date of birth <SortTable categories="birth"/></th>
-                <th scope="col">Address <SortTable categories="state"/></th>
-                <th scope="col">Date Start <SortTable categories="startDate"/></th>
-                <th scope="col">Department <SortTable categories="department"/></th>
+                {categories.map((category, index) => (                 
+                    <th key={index} scope="col">{category} <SortTable categories={category}/></th>
+                ))}
                 </tr>
             </thead>
           <tbody>

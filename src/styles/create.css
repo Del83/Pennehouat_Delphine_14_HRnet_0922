@@ -1,3 +1,19 @@
+/*-------------------- FORM CONTAINER --------------------*/
+.form-background {
+    background-color: rgba(115, 132, 45, 0.3);
+    margin-left: 280px;
+    border-radius: 0.625em 0em 0em 0.625em;
+    display: flex;
+    color:  rgba(0, 0, 0, 0.6);;
+}
+
+.form-ctn {
+    background-color: white;
+    width: 96%;
+    margin: 1.875em;
+}
+
+/*-------------------- FORM SECTION --------------------*/
 .form-identity, .form-address, .form-information {
     margin-right: 6.875em;
     text-align: end;
@@ -6,33 +22,28 @@
     grid-auto-rows: minmax(60px, auto);
 }
 
+
+/*-------------------- FORM INPUT --------------------*/
 .form-input, .dropdown {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
 
-.form-date {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 1.25em;
-}
-
 .form-input {
     padding-right: 1.25em;
 }
 
-.form-label {
-    font-size: 0.75em;
-    letter-spacing: 3px;
-    font-weight: 400;
+.form-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-right: 1.25em;
 }
 
-.form-address-state > label, .form-department > label {
+.form-date-ctn {
     display: flex;
-    height: 2.813em;
     align-items: center;
 }
 
@@ -51,16 +62,9 @@
 }
 
 .form-control-date {
-    width: 256px;
+    width: 267px;
     height: auto;
     padding: 0%;
-}
-
-.chevron {
-    height: 12px;
-    position: relative;
-    right: 25px;
-    bottom: 24px;
 }
 
 .form-address-state, .form-department {
@@ -68,6 +72,30 @@
     justify-content: flex-end;
 }
 
+.InputError {
+    font-size: 0.625em;
+    color: red;
+    letter-spacing: 3px;
+}
+
+.invalid {
+    border: red 2px solid;
+}
+
+/*-------------------- FORM LABEL --------------------*/
+.form-label {
+    font-size: 0.75em;
+    letter-spacing: 3px;
+    font-weight: 400;
+}
+
+.form-address-state > label, .form-department > label {
+    display: flex;
+    height: 2.813em;
+    align-items: center;
+}
+
+/*-------------------- FORM DROPDOWN --------------------*/
 .dropdown-container {
     position: relative;
 }
@@ -79,10 +107,9 @@
     z-index: 1;
     position: absolute;
     right: 1.25em;
-    top: 1.875em;
     margin: auto;
     text-align: left;
-    width: 224px;
+    width: 234px;
     list-style: none;
     border-radius: 0 0 0.625em 0.625em;
     padding: 15px 15px 5px 15px;
@@ -97,20 +124,22 @@
     font-size: 0.875em;
 }
 
-.form-background {
-    background-color: rgba(115, 132, 45, 0.3);
-    margin-left: 280px;
-    border-radius: 0.625em 0em 0em 0.625em;
-    display: flex;
-    color:  rgba(0, 0, 0, 0.6);;
+.chevron {
+    height: 12px;
+    position: relative;
+    right: 25px;
+    bottom: 24px;
 }
 
-.form-ctn {
-    background-color: white;
-    width: 96%;
-    margin: 1.875em;
+.unfolded {
+    border-radius: 0.625em 0.625em 0 0;
 }
 
+.display {
+    display: none;
+}
+
+/*-------------------- FORM BUTTON --------------------*/
 .create-button {
     width: 300px;
     height: 2.813em;
@@ -129,38 +158,7 @@
     margin: 1.875em;
 }
 
-.unfolded {
-    border-radius: 0.625em 0.625em 0 0;
-}
-
-:focus-visible {
-    outline: none
-}
-
-.errorMessage {
-    font-size: 0.625em;
-    color: red;
-    letter-spacing: 3px;
-}
-
-.display {
-    display: none;
-}
-
-.react-calendar { 
-    position: absolute;
-    z-index: 2;
-}
-
-.calendar {
-    direction: rtl;
-}
-
-.rw-widget-input {
-    background-color: rgba(245, 245, 241, 1);
-    width: inherit;
-}
-
+/*-------------------- MODAL --------------------*/
 .modal {
     position: fixed;
     top: 0;
@@ -203,3 +201,26 @@
     left: 195px;
     bottom: 15px;
 }
+
+
+
+:focus-visible {
+    outline: none
+}
+
+
+
+.react-calendar { 
+    position: absolute;
+    z-index: 2;
+}
+
+.calendar {
+    direction: rtl;
+}
+
+.rw-widget-input {
+    background-color: rgba(245, 245, 241, 1);
+    width: inherit;
+}
+

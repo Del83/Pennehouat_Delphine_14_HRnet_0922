@@ -1,18 +1,18 @@
+/** IMPORT REACT REDUX */
 import { createSlice } from "@reduxjs/toolkit";
-// DATA et ACTIONS
+
+/** DATA et ACTIONS */
 import formManagement from "./actionsForm";
 
 const initialState = {
   firstName: {
     value: "",
     name: "firstName",
-    error: null,
     valid: null,
   },
   lastName: {
     value: "",
     name: "lastName",
-    error: null,
     valid: null,
   },
   birth: {
@@ -24,26 +24,22 @@ const initialState = {
   street: {
     value: "",
     name: "street",
-    error: null,
     valid: null,
   },
   city: {
     value: "",
     name: "city",
-    error: null,
     valid: null,
   },
   state: {
     value: "",
     select: "",
     name: "state",
-    error: null,
     valid: null,
   },
   zipCode: {
     value: "",
     name: "zipCode",
-    error: null,
     valid: null,
   },
   startDate: {
@@ -59,9 +55,6 @@ const initialState = {
     error: null,
     valid: null,
   },
-  modal: {
-    display: false,
-  },
 };
 
 export const createEmployeeSlice = createSlice({
@@ -70,5 +63,5 @@ export const createEmployeeSlice = createSlice({
   reducers: formManagement,
 });
 
-export const { handleInput, selectItem, handleDate, openModal, reset } =
+export const { handleInput, selectItem, handleDate, reset } =
   createEmployeeSlice.actions;

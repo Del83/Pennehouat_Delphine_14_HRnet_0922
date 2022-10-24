@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { searchData } from "../../utils/getEmployees"
+import { searchData } from "../../feature/employeesTableSlice"
 
 /**
 * Search in table

@@ -1,6 +1,6 @@
 import propTypes from 'prop-types';
 import { useDispatch} from "react-redux"
-import { sortIncreasing, sortDescending } from "../../utils/getEmployees"
+import { sortIncreasing, sortDescending } from "../../feature/employeesTableSlice"
 import "../../styles/table.css"
 
 /**
@@ -21,7 +21,6 @@ export default function SortTable ( { categories } ) {
       </div>
     )
 }
-
 SortTable.propTypes = {
   categories: propTypes.string,
 }

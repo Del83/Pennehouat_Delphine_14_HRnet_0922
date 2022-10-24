@@ -106,7 +106,7 @@
     font-family: "Gill Sans", sans-serif;
     outline: none;
     grid-template: 1fr/1fr 1.9em;
-    width: 254px;
+    width: 265px;
   }
   .rw-widget-picker.rw-hide-caret {
     grid-template-columns: 1fr;
@@ -502,7 +502,7 @@
   .rw-calendar-popup {
     right: auto;
     min-width: 0;
-    width: 22em;
+    width: 21em;
   }
   
   .rw-calendar {

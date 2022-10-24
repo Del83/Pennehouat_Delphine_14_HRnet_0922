@@ -1,23 +1,18 @@
-import {  useSelector, useDispatch } from "react-redux";
 import "../../styles/create.css"
-import { openModal } from "../../utils/postEmployees";
-
-import { modal } from "../../utils/selector";
 
 /**
-* Header layout
+* Modal component
 * @component
 */
-export default function Modal () {
-  const dispatch = useDispatch();
-  const display = useSelector(modal);
-  const handleDisplay = () => dispatch(openModal(false))
-  
+export default function Modal ({display, setDisplay, message}) {
+
+  const handleDisplay = () => {setDisplay(!display)};
+
     return (
         <section className={ display ? "modal" : "display"}>
             <div className="modal-ctn">
               <button className="modal-close" onClick={handleDisplay}>X</button>
-              <p>Employee Created !</p>
+              <p>{message}</p>
             </div>
         </section>
     )

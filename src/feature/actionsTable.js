@@ -17,17 +17,18 @@ const tableManagement = {
   },
   sortIncreasing: (state, action) => {
     const categories = action.payload;
+    console.log(categories);
     const employees = state.data;
     const dataMap = employees.map((e, i) => {
-      if (categories === "lastName") {
+      if (categories === "Name") {
         return { i, value: e.lastName.toLowerCase() };
-      } else if (categories === "birth") {
+      } else if (categories === "Date of birth") {
         return { i, value: e.birth };
-      } else if (categories === "state") {
+      } else if (categories === "Address") {
         return { i, value: e.state };
-      } else if (categories === "startDate") {
+      } else if (categories === "Date start") {
         return { i, value: e.startDate };
-      } else if (categories === "department") {
+      } else if (categories === "Department") {
         return { i, value: e.department };
       }
       return console.log("error");
@@ -43,15 +44,15 @@ const tableManagement = {
     const categories = action.payload;
     const employees = state.data;
     const dataMap = employees.map((e, i) => {
-      if (categories === "lastName") {
+      if (categories === "Name") {
         return { i, value: e.lastName.toLowerCase() };
-      } else if (categories === "birth") {
+      } else if (categories === "Date of birth") {
         return { i, value: e.birth };
-      } else if (categories === "state") {
+      } else if (categories === "Address") {
         return { i, value: e.state };
-      } else if (categories === "startDate") {
+      } else if (categories === "Date start") {
         return { i, value: e.startDate };
-      } else if (categories === "department") {
+      } else if (categories === "Department") {
         return { i, value: e.department };
       }
       return console.log("error");

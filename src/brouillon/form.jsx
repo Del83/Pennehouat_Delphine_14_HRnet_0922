@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
-import { addEmployee } from "../../../utils/getEmployees"
-import { reset, openModal } from "../../../utils/postEmployees";
-import * as select from "../../../utils/selector";
-import FormInput from "./form-input";
-import Dropdown from "./form-dropdown";
-import FormDate from "./form-date";
-import { STATES_LIST } from "../../../data/states";
-import { DEPARTMENTS_LIST } from "../../../data/departments";
+import { addEmployee } from "../feature/employeesTableSlice"
+import { reset, openModal } from "../feature/createEmployeeSlice";
+import * as select from "./selector";
+import InputText from "../components/UI/form/input-text";
+import InputDropdown from "../components/UI/form/input-dropdown";
+import InputDate from "../components/UI/form/input-date";
+import { STATES_LIST } from "../data/states";
+import { DEPARTMENTS_LIST } from "../data/departments";
 
 import "../../../styles/create.css";
 //import Modal from "../modal";
@@ -57,48 +57,48 @@ export default function Form() {
           <section className="identity">
             <h4>Identity of the employee</h4>
             <div className="form-identity">
-              <FormInput
+              <InputText
                 label="First name"
                 name="firstName"
                 type="text"
                 value={firstName}
                 valid={firstNameValid}
               />
-              <FormInput
+              <InputText
                 label="Last name"
                 name="lastName"
                 type="text"
                 value={lastName}
                 valid={lastNameValid}
               />
-            <FormDate label="Date of birth" name="birth" max={new Date(2004, 11, 31)} defaultValue={new Date(2004, 11, 31)}/>
+            <InputDate label="Date of birth" name="birth" max={new Date(2004, 11, 31)} defaultValue={new Date(2004, 11, 31)}/>
             </div>
           </section>
           <section className="address">
             <h4>Address of the employee</h4>
             <div className="form-address">
-              <FormInput
+              <InputText
                 label="Street"
                 name="street"
                 type="text"
                 value={street}
                 valid={streetValid}
               />
-              <FormInput
+              <InputText
                 label="City"
                 name="city"
                 type="text"
                 value={city}
                 valid={cityValid}
               />
-              <Dropdown
+              <InputDropdown
                 label="State"
                 name="state"
                 value={state}
                 list={STATES_LIST}
                 valid={stateValid}
               />
-              <FormInput
+              <InputText
                 label="Zip Code"
                 name="zipCode"
                 type="number"
@@ -112,10 +112,10 @@ export default function Form() {
             <h4>Employee information</h4>
             <div className="form-information">
               <div className="form-profile-start-date">
-              <FormDate label="Start date" name="startDate" max={new Date()} defaultValue={new Date()}/>
+              <InputDate label="Start date" name="startDate" max={new Date()} defaultValue={new Date()}/>
               </div>
               <div className="form-department">
-                <Dropdown
+                <InputDropdown
                   label="Department"
                   name="department"
                   value={department}

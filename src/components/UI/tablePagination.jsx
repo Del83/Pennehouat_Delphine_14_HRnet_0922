@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { goPreviousPage, goNextPage } from "../../utils/getEmployees"
+import { goPreviousPage, goNextPage } from "../../feature/employeesTableSlice"
 
 /**
 * Paged of table

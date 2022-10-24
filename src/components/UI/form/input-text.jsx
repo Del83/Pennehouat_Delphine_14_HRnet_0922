@@ -1,26 +1,15 @@
 import { useDispatch } from "react-redux";
 import "../../../styles/create.css"
-import { handleInput } from "../../../utils/postEmployees";
+import { handleInput } from "../../../feature/createEmployeeSlice";
+import InputError from "./input-error";
 
 /**
 * Form input
 * @component
 */
-export default function FormInput ( { label, name, type, value, valid, placeholder }) {
+export default function InputText ( { label, value, name, valid }) {
 
   const dispatch = useDispatch();
-  
-
-  const ErrorMessage = () => {
-    if (valid === false) {
-      return (
-        <div>
-          <span className="errorMessage"> Required fields or invalid format</span>
-        </div>
-      )
-    }
-  }
-
     return (
       <div className="form-input"> 
       <div>
@@ -29,22 +18,24 @@ export default function FormInput ( { label, name, type, value, valid, placehold
             <input
                 key={name}
                 name={name}
-                type={type}
+                type="text"
                 id={name}
                 value={value}
-                onChange={ (e) => dispatch(handleInput({value:e.target.value, name:e.target.name, category:{name}}))}
+                onChange={ (e) => dispatch(handleInput({value : e.target.value, name: e.target.name}))}
                 className="form-control"
-                placeholder={placeholder}
+                min={3}
+                max={20}
               />
         </label>
-      </div>
-       <ErrorMessage/>
+      </div> 
+      {}
+       <InputError valid={valid} />
       </div>
         
     )
 }
 
-// export default function FormInput ( { labelFor, valueInput, setValue, className }) {
+// export default function InputText ( { labelFor, valueInput, setValue, className }) {
 
 //   const dispatch = useDispatch()
 //   const searchInput = useSelector((state) => state.employeeList.searchInput) 
