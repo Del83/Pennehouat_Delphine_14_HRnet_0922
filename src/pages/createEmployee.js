@@ -3,9 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 
 /** IMPORT UTILS */
-import { addEmployee } from "../feature/employeesTableSlice";
+import { addEmployee } from "../feature/employeesSlice";
 import { reset } from "../feature/createEmployeeSlice";
-//import { addEmployee, validInputText } from "../app/createEmployeeSlice";
 
 /** IMPORT COMPONENTS UI */
 import InputText from "../components/UI/form/input-text";
@@ -32,10 +31,23 @@ import Modal from "@del83/plugin_modal_p14/dist";
 export default function CreateEmployee() {
   const dispatch = useDispatch();
   const employees = useSelector((state) => state.employeeList.data);
+  console.log(employees);
   const inputState = useSelector((state) => state.createEmployee);
   const [displayModal, setDisplayModal] = useState(false);
   const [formValid, setFormValid] = useState(false);
   const [messageModal, setMessageModal] = useState("");
+  const statesList = []
+  const departmentsList = []
+
+  const getItem = (listItems, listArray) => {
+    listItems.map((item) => (listArray.push(item.name)))
+  } 
+
+  getItem(STATES_LIST,statesList)
+  getItem(DEPARTMENTS_LIST, departmentsList )
+
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -143,7 +155,7 @@ export default function CreateEmployee() {
                 value={inputState.state.value}
                 valid={inputState.state.valid}
                 dataInput={inputState.state}
-                list={STATES_LIST}
+                list={statesList}
               />
               <InputText
                 label="Zip Code"
@@ -177,7 +189,7 @@ export default function CreateEmployee() {
                   value={inputState.department.value}
                   valid={inputState.department.valid}
                   dataInput={inputState.department}
-                  list={DEPARTMENTS_LIST}
+                  list={departmentsList}
                 />
               </div>
             </div>

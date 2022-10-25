@@ -2,12 +2,12 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 /** SLICE */
-import { employeesTableSlice } from "../feature/employeesTableSlice";
+import { employeesSlice } from "../feature/employeesSlice";
 import { createEmployeeSlice } from "../feature/createEmployeeSlice";
 //import { handleInput, handleDate } from "../utils/postEmployees";
 
 const reducer = combineReducers({
-  employeeList: employeesTableSlice.reducer,
+  employeeList: employeesSlice.reducer,
   createEmployee: createEmployeeSlice.reducer,
 });
 

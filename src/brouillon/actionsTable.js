@@ -17,7 +17,7 @@ const tableManagement = {
   },
   sortIncreasing: (state, action) => {
     const categories = action.payload;
-    console.log(categories);
+
     const employees = state.data;
     const dataMap = employees.map((e, i) => {
       if (categories === "Name") {

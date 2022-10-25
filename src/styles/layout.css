@@ -27,6 +27,24 @@
         color: white;
     }
 
+    @media (max-width: 1230px) {
+        .logo {
+            height: 100px;
+            width: 100px;
+        }
+    }
+
+    @media (max-width: 425px) {
+        .logo {
+            height: 60px;
+            width: 60px;
+        }
+        .logo-ctn {
+            gap: 10px;
+        }
+    }
+
+
 /*-------------------- SIDE --------------------*/
 .side {
         padding-top: 150px;
@@ -34,7 +52,7 @@
     }
 
 .side-icon {
-        padding-right: 10px;
+        padding-right: 20px;
     }
 
 .side-ctn {
@@ -45,17 +63,16 @@
 .side-section {
         display: flex;
         align-items: center;
-        width: 210px;
+        width: 230px;
         height: 40px;
         justify-content: center;
     }
 
 .active {
-        background-color:rgba(115, 132, 45, 0.6);
+        background-color:rgba(115, 132, 45, 0.8);
         color: white;
-        font-weight: bolder;
         border-radius: 0 10px 10px 0;
-        box-shadow: 0 1px 1px grey
+        box-shadow: 0 0.5em 1em rgb(0 0 0 / 18%);
     }
 
 a {
@@ -63,10 +80,28 @@ a {
         color: black;
     }
 
+@media (max-width: 1230px) {
+    h3 {
+        display: none;
+    }
+    .side-icon {
+        padding-right: 0px;
+    }
+    .side-section {
+        width: 60px;
+    }
+
+}
+
 /*-------------------- FOOTER --------------------*/
 
 .footer {
         letter-spacing: 5px;
-        margin-top: 50px;
         font-size: 10px;
+    }
+
+@media (max-width: 425px) {
+    .footer {
+        font-size: 8px;
+    }
     }

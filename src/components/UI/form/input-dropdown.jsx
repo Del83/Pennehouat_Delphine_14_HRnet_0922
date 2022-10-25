@@ -28,27 +28,56 @@ export default function InputDropdown({ label, name, list, value, valid }) {
     //return setValueSelect(e.target.value)
     return dispatch(selectItem({title: e.target.title, textContent: e.target.textContent}))
   }
- 
 
     return (
-      <div className="dropdown">
+      
         <div className={unfolded ? "dropdown-container folded" : "dropdown-container" }  onClick={handleFolded}>
           <InputText value={value} autocomplete="off" label={label} name={name} valid={valid} className={unfolded ? "form-control unfolded" : "form-control" }/>
           {unfolded && (
             <p className="dropdown-content" name={name}> 
             {list.map((item, index) => (
                 <li key={index} title={name} onClick={select}>
-                  {item.name}
+                  {item}
                 </li>))}
             </p>)}    
           <img className="chevron" src={chevron} alt="drop-down menu chevron" width="20" height="10"/>
         </div>
-      </div>
     );
 
 }
 
+// export default function InputDropdown({ label, name, list, value, valid }) {
 
+//   const dispatch = useDispatch();
+//   const [ unfolded, setUnfolded ] = useState(false)
+//   //const [ valueSelect, setValueSelect ] = useState("")
+//   const chevron = unfolded ? chevronUp : chevronDown;
+//   const handleFolded = () => {setUnfolded(!unfolded)};
+
+  
+//   const select = (e) => {
+//     handleFolded();
+//     //return setValueSelect(e.target.value)
+//     return dispatch(selectItem({title: e.target.title, textContent: e.target.textContent}))
+//   }
+
+//     return (
+//       <div className="dropdown">
+//         <div className={unfolded ? "dropdown-container folded" : "dropdown-container" }  onClick={handleFolded}>
+//           <InputText value={value} autocomplete="off" label={label} name={name} valid={valid} className={unfolded ? "form-control unfolded" : "form-control" }/>
+//           {unfolded && (
+//             <p className="dropdown-content" name={name}> 
+//             {list.map((item, index) => (
+//                 <li key={index} title={name} onClick={select}>
+//                   {item}
+//                 </li>))}
+//             </p>)}    
+//           <img className="chevron" src={chevron} alt="drop-down menu chevron" width="20" height="10"/>
+//         </div>
+//       </div>
+//     );
+
+// }
 
 
 // export default function Dropdown({ contents, labelFor, select, setValue, register }) {

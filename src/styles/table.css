@@ -4,9 +4,14 @@
 
 .table-ctn {
     background-color: white;
-    width: 96%;
     margin: 0px 30px 0px 30px
   }
+
+  @media (max-width: 425px) {
+    .table-ctn {
+      margin: 0px 10px 0px 10px
+    }
+}
 
 /*-------------------- HEADER TABLE --------------------*/   
 thead {
@@ -26,6 +31,19 @@ thead {
     cursor: pointer;
     font-size: 8px;
   }
+
+  @media (max-width: 425px) {
+    thead {
+      font-size: 8px;; 
+    }
+    .chevronUp {
+      transform: translateX(2px);
+    }
+  
+  .chevronDown {
+      transform: translateX(0px) rotate(180deg);
+    }
+}
 
 /*-------------------- BODY TABLE --------------------*/  
 tbody {
@@ -58,6 +76,25 @@ tr {
     align-items: center;
     justify-content: center;
   }  
+
+  @media (max-width: 425px) {
+    tbody {
+      font-size: 8px;
+    }
+    td, th {
+      width: -webkit-fill-available;
+    } 
+    tr {
+      padding: 10px 3px 10px 3px;
+      margin: 0;
+    }
+    th {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline;
+    }
+}
 
 /*-------------------- TABLE LAYOUT --------------------*/  
 
@@ -92,3 +129,20 @@ b {
 .pointer {
     cursor: pointer;
   }
+
+@media (max-width: 425px) {
+  .entries-number, .show-entries {
+    margin-left: 4px;
+    font-size: 10px;
+    }
+    .pagination, .search {
+      margin-right: 10px;
+      font-size: 10px;
+    }
+    b {
+      font-size: 10px;
+    }
+    .search {
+      font-size: 10px;
+    }
+}
