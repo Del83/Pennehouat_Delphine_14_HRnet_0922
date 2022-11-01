@@ -77,10 +77,19 @@
     border: 0;
   }
 
+  .react-calendar { 
+    position: absolute;
+    z-index: 2;
+}
+
   .rw-i-calendar {
     height: 15px;
   }
   
+  .calendar {
+    direction: rtl;
+}
+
   .rw-widget {
     border: none;
     color: #212529;

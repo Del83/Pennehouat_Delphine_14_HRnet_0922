@@ -1,101 +1,95 @@
-
+import propTypes from "prop-types";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+
 import chevronDown from "../../../assets/chevronDown.png";
 import chevronUp from "../../../assets/chevronUp.png";
 import InputText from "./input-text";
-
-import { selectItem } from "../../../feature/createEmployeeSlice";
-
-import "../../../styles/create.css"
+/** STYLE */
+import "../../../styles/create.css";
 
 /**
- * React Component function : Dropdown
- * @param props Component props
- * @param props.contents Lodge dropdown contents
+ * React component : The input dropdown of the form
+ * @param {string} name field name
+ * @param {string} label field label
+ * @param {Array} list maximum date
+ * @param {bool} valid default date
+ * @param {func} setSelect input state change
+ * @param {func} setInput input state change
+ * @param {string} input input value
+ * @param {string} className input class name
+ * @param {string} classContent input content class name
+ * @param {string} classChevron input chevron class name
+ * @component
  */
-export default function InputDropdown({ label, name, list, value, valid }) {
-
-  const dispatch = useDispatch();
-  const [ unfolded, setUnfolded ] = useState(false)
-  //const [ valueSelect, setValueSelect ] = useState("")
+export default function InputDropdown({
+  name,
+  label,
+  list,
+  valid,
+  setSelect,
+  setInput,
+  input,
+  className,
+  classContent,
+  classChevron,
+}) {
+  const [unfolded, setUnfolded] = useState(false);
   const chevron = unfolded ? chevronUp : chevronDown;
-  const handleFolded = () => {setUnfolded(!unfolded)};
+  const handleFolded = () => {
+    setUnfolded(!unfolded);
+  };
 
-  
   const select = (e) => {
     handleFolded();
-    //return setValueSelect(e.target.value)
-    return dispatch(selectItem({title: e.target.title, textContent: e.target.textContent}))
-  }
+    return setSelect({
+      title: e.target.title,
+      textContent: e.target.textContent,
+    });
+  };
 
-    return (
-      
-        <div className={unfolded ? "dropdown-container folded" : "dropdown-container" }  onClick={handleFolded}>
-          <InputText value={value} autocomplete="off" label={label} name={name} valid={valid} className={unfolded ? "form-control unfolded" : "form-control" }/>
-          {unfolded && (
-            <p className="dropdown-content" name={name}> 
-            {list.map((item, index) => (
-                <li key={index} title={name} onClick={select}>
-                  {item}
-                </li>))}
-            </p>)}    
-          <img className="chevron" src={chevron} alt="drop-down menu chevron" width="20" height="10"/>
-        </div>
-    );
-
+  return (
+    <div
+      className={unfolded ? "dropdown-container folded" : "dropdown-container"}
+      onClick={handleFolded}
+    >
+      <InputText
+        autocomplete="off"
+        label={label}
+        name={name}
+        valid={valid}
+        className={unfolded ? `unfolded ${className} ` : className}
+        input={input}
+        setInput={setInput}
+      />
+      {unfolded && (
+        <ul className={classContent} name={name}>
+          {list.map((item, index) => (
+            <li key={index} title={name} onClick={select}>
+              {item}
+            </li>
+          ))}
+        </ul>
+      )}
+      <img
+        className={classChevron}
+        src={chevron}
+        alt="drop-down menu chevron"
+        width="20"
+        height="10"
+      />
+    </div>
+  );
 }
 
-// export default function InputDropdown({ label, name, list, value, valid }) {
-
-//   const dispatch = useDispatch();
-//   const [ unfolded, setUnfolded ] = useState(false)
-//   //const [ valueSelect, setValueSelect ] = useState("")
-//   const chevron = unfolded ? chevronUp : chevronDown;
-//   const handleFolded = () => {setUnfolded(!unfolded)};
-
-  
-//   const select = (e) => {
-//     handleFolded();
-//     //return setValueSelect(e.target.value)
-//     return dispatch(selectItem({title: e.target.title, textContent: e.target.textContent}))
-//   }
-
-//     return (
-//       <div className="dropdown">
-//         <div className={unfolded ? "dropdown-container folded" : "dropdown-container" }  onClick={handleFolded}>
-//           <InputText value={value} autocomplete="off" label={label} name={name} valid={valid} className={unfolded ? "form-control unfolded" : "form-control" }/>
-//           {unfolded && (
-//             <p className="dropdown-content" name={name}> 
-//             {list.map((item, index) => (
-//                 <li key={index} title={name} onClick={select}>
-//                   {item}
-//                 </li>))}
-//             </p>)}    
-//           <img className="chevron" src={chevron} alt="drop-down menu chevron" width="20" height="10"/>
-//         </div>
-//       </div>
-//     );
-
-// }
-
-
-// export default function Dropdown({ contents, labelFor, select, setValue, register }) {
-
-//     const [unfolded, setUnfolded] = useState(false);
-//     const chevron = unfolded ? chevronDown : chevronUp;
-//     const handleFolded = () => { setUnfolded(!unfolded)};
-//     const content = () => { return <select {...register("category")} className="dropdown-content">{contents}</select> };
-      
-//       return (
-//         <div className="dropdown" >
-//           <div className={unfolded ? "dropdown-container folded" : "dropdown-container" }  onClick={handleFolded}>
-//              {unfolded && content()}
-//           </div>
-         
-//         </div>
-//       );
-
-// }
-
-
+InputDropdown.propTypes = {
+  name: propTypes.string,
+  label: propTypes.string,
+  list: propTypes.array,
+  valid: propTypes.bool,
+  setSelect: propTypes.func,
+  setInput: propTypes.func,
+  input: propTypes.node,
+  className: propTypes.string,
+  classContent: propTypes.string,
+  classChevron: propTypes.string,
+};

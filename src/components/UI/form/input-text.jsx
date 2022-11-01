@@ -1,15 +1,21 @@
-import { useDispatch } from "react-redux";
-import "../../../styles/create.css"
-import { handleInput } from "../../../feature/createEmployeeSlice";
+import propTypes from 'prop-types';
 import InputError from "./input-error";
+import "../../../styles/create.css"
 
 /**
-* Form input
+* React component : The input text of the form
+* @param {string} name field name
+* @param {string} label field label
+* @param {bool} valid default date
+* @param {func} setInput input state change
+* @param {string} input input value
+* @param {string} className input class name
 * @component
 */
-export default function InputText ( { label, value, name, valid }) {
+export default function InputText ({ name, label, valid, setInput, input, className }) {
 
-  const dispatch = useDispatch();
+  const handleInput = (e) => setInput(e)
+  
     return (
       <div className="form-input"> 
       <div>
@@ -20,42 +26,24 @@ export default function InputText ( { label, value, name, valid }) {
                 name={name}
                 type="text"
                 id={name}
-                value={value}
-                onChange={ (e) => dispatch(handleInput({value : e.target.value, name: e.target.name}))}
-                className="form-control"
+                value={input}
+                onChange={ (e) => handleInput({value : e.target.value, name: e.target.name})}
+                className={className}
                 min={3}
                 max={20}
               />
         </label>
       </div> 
-      {}
        <InputError valid={valid} />
-      </div>
-        
+      </div>  
     )
 }
 
-// export default function InputText ( { labelFor, valueInput, setValue, className }) {
-
-//   const dispatch = useDispatch()
-//   const searchInput = useSelector((state) => state.employeeList.searchInput) 
-//   const handleSearchInput = (e) => {
-//       const inputContent = e.target.value.toLowerCase()
-//       .replace(/\s/g, "")
-//       .normalize("NFD")
-//       .replace(/\p{Diacritic}/gu, "");
-//       return dispatch(searchData(inputContent))
-//   }
-
-//     return (
-//               <input
-//                 value={valueInput}
-//                 onChange={(e) => setValue(e.target.value)}
-//                 type="text"
-//                 id={labelFor}
-//                 className={className}
-//                 //className="form-control"
-//                 //fieldError="false"
-//               />
-//     )
-// }
+InputText.propTypes = {
+  name: propTypes.string, 
+  label: propTypes.string, 
+  valid: propTypes.bool, 
+  setInput: propTypes.func, 
+  input: propTypes.node,
+  className: propTypes.string,
+}

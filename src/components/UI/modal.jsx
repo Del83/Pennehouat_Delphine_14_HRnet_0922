@@ -1,10 +1,14 @@
+import propTypes from 'prop-types';
 import "../../styles/create.css"
 
 /**
 * Modal component
+* @param {bool} display modal display
+* @param {func} setDisplay modal state change
+* @param {string} message modal message
 * @component
 */
-export default function Modal ({display, setDisplay, message}) {
+export default function Modal ({ display, setDisplay, message }) {
 
   const handleDisplay = () => {setDisplay(!display)};
 
@@ -16,4 +20,10 @@ export default function Modal ({display, setDisplay, message}) {
             </div>
         </section>
     )
+}
+
+Modal.propTypes = {
+  display: propTypes.bool, 
+  setDisplay: propTypes.func,
+  message: propTypes.string,
 }

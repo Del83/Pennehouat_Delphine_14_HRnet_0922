@@ -1,71 +1,51 @@
-import propTypes from 'prop-types';
-import InputDropdown from "./form/input-dropdown"
+import propTypes from "prop-types";
+import InputDropdown from "./form/input-dropdown";
 
 /**
-* Data display
-* @param {Number} itemsPerPage items per page 
-* @param {Number} itemsTotal the total of the items
-* @component
-*/
-export default function Display ( {itemsPerPage, setItemsPerPage} ) {
-  
-      const numberEntries = [10, 15, 30];
+ * Data display
+ * @param {node} itemsPerPage items per page
+ * @param {func} setSelect input state change
+ * @param {array} numberEntries List of number of entries per page
+ * @param {string} className input class name
+ * @param {string} classContent input content class name
+ * @param {string} classChevron input chevron class name
+ * @component
+ */
+export default function Display({
+  itemsPerPage,
+  setSelect,
+  numberEntries,
+  className,
+  classContent,
+  classChevron,
+}) {
+  const showPerPage = (e) => {
+    return setSelect(e.textContent);
+  };
 
-      const showPerPage = (e) => {
-        return setItemsPerPage(e)
-      }
-
-    return (
-         <div className="show-entries">
-            <span>Show</span> 
-                <b>
-                  {/* < InputDropdown
-                        label="Show"
-                        name="show"
-                        value={itemsPerPage}
-                        list={numberEntries}
-                    />   */}
-                    <select onChange={(e) => showPerPage(e.target.value)}>
-                    {numberEntries.map((number, index) => (
-                        <option key={index} value={number} defaultValue={itemsPerPage} >
-                            {number}
-                        </option>
-                    ))}
-                    </select>
-                </b> 
-            <span>entries</span>
-        </div>
-    )
+  return (
+    <div className="show-entries">
+      <InputDropdown
+        label="Show"
+        name="show"
+        className={className}
+        classContent={classContent}
+        classChevron={classChevron}
+        value={itemsPerPage}
+        input={itemsPerPage}
+        list={numberEntries}
+        setSelect={showPerPage}
+      />
+      <span className="entries">entries</span>
+    </div>
+  );
 }
 
 Display.propTypes = {
-  itemsPerPage: propTypes.number,
-  setItemsPerPage: propTypes.func,
-}
-
-    
-
-//   const itemsPerPage = useSelector((state) => state.employeeList.itemsPerPage) 
-
-//   return (
-//        <div className="show-entries">
-//           <span>Show</span> 
-//               <b>
-//                 < InputDropdown
-//                       label="Show"
-//                       name="show"
-//                       value={itemsPerPage}
-//                       list={numberEntries}
-//                   />  
-//                   <select onChange={(e) => dispatch(showPerPage(e.target.value))}>
-//                   {numberEntries.map((number, index) => (
-//                       <option key={index} value={number} defaultValue={itemsPerPage} >
-//                           {number}
-//                       </option>
-//                   ))}
-//                   </select>
-//               </b> 
-//           <span>entries</span>
-//       </div>
-//   )
-// }
+  itemsPerPage: propTypes.node,
+  setSelect: propTypes.func,
+  numberEntries: propTypes.array,
+  className: propTypes.string,
+  classContent: propTypes.string,
+  classChevron: propTypes.string,
+};

@@ -11,6 +11,12 @@ import InputText from "../components/UI/form/input-text";
 import InputDropdown from "../components/UI/form/input-dropdown";
 import InputDate from "../components/UI/form/input-date";
 
+import {
+  handleDate,
+  handleInput,
+  selectItem,
+} from "../feature/createEmployeeSlice";
+
 /** IMPORT DATA */
 import { STATES_LIST } from "../data/states";
 import { DEPARTMENTS_LIST } from "../data/departments";
@@ -19,35 +25,29 @@ import { DEPARTMENTS_LIST } from "../data/departments";
 import Header from "../components/layout/header";
 import Side from "../components/layout/side";
 import Footer from "../components/layout/footer";
+import Modal from "@del83/plugin_modal_p14/dist";
 //import Modal from "../components/UI/modal";
 
 /** STYLE */
 import "../styles/create.css";
 
-import Modal from "@del83/plugin_modal_p14/dist";
-
-//console.log(Modal);
-
 export default function CreateEmployee() {
   const dispatch = useDispatch();
   const employees = useSelector((state) => state.employeeList.data);
-  console.log(employees);
   const inputState = useSelector((state) => state.createEmployee);
+  const [input, setInput] = useState("");
+  const [select, setSelect] = useState("");
   const [displayModal, setDisplayModal] = useState(false);
   const [formValid, setFormValid] = useState(false);
   const [messageModal, setMessageModal] = useState("");
-  const statesList = []
-  const departmentsList = []
+  const statesList = [];
+  const departmentsList = [];
 
   const getItem = (listItems, listArray) => {
-    listItems.map((item) => (listArray.push(item.name)))
-  } 
-
-  getItem(STATES_LIST,statesList)
-  getItem(DEPARTMENTS_LIST, departmentsList )
-
-
-
+    listItems.map((item) => listArray.push(item.name));
+  };
+  getItem(STATES_LIST, statesList);
+  getItem(DEPARTMENTS_LIST, departmentsList);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,8 +76,10 @@ export default function CreateEmployee() {
   };
 
   useEffect(() => {
+    dispatch(selectItem(select));
+    dispatch(handleInput(input));
+    dispatch(handleDate(input));
     const inputsValid = [];
-    //const inputsValue = [];
     for (const property in inputState) {
       inputsValid.push(inputState[property].valid);
       if (
@@ -88,7 +90,7 @@ export default function CreateEmployee() {
       }
       setFormValid(true);
     }
-  }, [inputState]);
+  }, [inputState, input, select, dispatch]);
 
   return (
     <div className="create-employee">
@@ -106,8 +108,9 @@ export default function CreateEmployee() {
                 type="text"
                 value={inputState.firstName.value}
                 valid={inputState.firstName.valid}
-                messageError={inputState.firstName.error}
-                dataInput={inputState.firstName}
+                input={inputState.firstName.value}
+                className="form-control"
+                setInput={setInput}
               />
               <InputText
                 label="Last name"
@@ -115,8 +118,9 @@ export default function CreateEmployee() {
                 type="text"
                 value={inputState.lastName.value}
                 valid={inputState.lastName.valid}
-                messageError={inputState.lastName.error}
-                dataInput={inputState.lastName}
+                input={inputState.lastName.value}
+                className="form-control"
+                setInput={setInput}
               />
               <InputDate
                 label="Date of birth"
@@ -124,7 +128,8 @@ export default function CreateEmployee() {
                 max={new Date(2004, 11, 31)}
                 defaultValue={new Date(2004, 11, 31)}
                 valid={inputState.birth.valid}
-                messageError={inputState.birth.error}
+                input={inputState.birth.value}
+                setInput={setInput}
               />
             </div>
           </section>
@@ -137,8 +142,9 @@ export default function CreateEmployee() {
                 type="text"
                 value={inputState.street.value}
                 valid={inputState.street.valid}
-                messageError={inputState.street.error}
-                dataInput={inputState.street}
+                input={inputState.street.value}
+                className="form-control"
+                setInput={setInput}
               />
               <InputText
                 label="City"
@@ -146,16 +152,22 @@ export default function CreateEmployee() {
                 type="text"
                 value={inputState.city.value}
                 valid={inputState.city.valid}
-                messageError={inputState.city.error}
-                dataInput={inputState.city}
+                input={inputState.city.value}
+                className="form-control"
+                setInput={setInput}
               />
               <InputDropdown
                 label="State"
                 name="state"
                 value={inputState.state.value}
                 valid={inputState.state.valid}
-                dataInput={inputState.state}
+                input={inputState.state.value}
+                className="form-control"
+                classContent="dropdown-content"
+                classChevron="chevron"
                 list={statesList}
+                setInput={setInput}
+                setSelect={setSelect}
               />
               <InputText
                 label="Zip Code"
@@ -163,8 +175,9 @@ export default function CreateEmployee() {
                 type="number"
                 value={inputState.zipCode.value}
                 valid={inputState.zipCode.valid}
-                messageError={inputState.zipCode.error}
-                dataInput={inputState.zipCode}
+                input={inputState.zipCode.value}
+                className="form-control"
+                setInput={setInput}
               />
             </div>
           </section>
@@ -178,8 +191,9 @@ export default function CreateEmployee() {
                   name="startDate"
                   max={new Date()}
                   defaultValue={new Date()}
-                  messageError={inputState.startDate.error}
                   valid={inputState.startDate.valid}
+                  input={inputState.startDate.value}
+                  setInput={setInput}
                 />
               </div>
               <div className="form-department">
@@ -188,8 +202,13 @@ export default function CreateEmployee() {
                   name="department"
                   value={inputState.department.value}
                   valid={inputState.department.valid}
-                  dataInput={inputState.department}
+                  input={inputState.department.value}
+                  className="form-control"
+                  classContent="dropdown-content"
+                  classChevron="chevron"
                   list={departmentsList}
+                  setInput={setInput}
+                  setSelect={setSelect}
                 />
               </div>
             </div>
@@ -209,268 +228,3 @@ export default function CreateEmployee() {
     </div>
   );
 }
-
-// useEffect(() => {
-//   const inputsValid = [];
-//   const inputsValue = [];
-//   for (const property in inputState) {
-//     inputsValid.push(inputState[property].valid);
-//     inputsValue.push(inputState[property].value);
-//     console.log(inputState[property].valid);
-//     if (
-//       //inputsValid.some((input) => input === false) === true
-//       inputsValid.every((input) => input === true) === false
-//       //inputsValue.some((input) => input === "") === true &&
-//       //inputsValue.some((input) => input.length <= 3) === true
-//     ) {
-//       console.log("hohohohoh");
-//       console.log(inputsValid);
-//       setFormValid(false);
-//       //console.log(inputState[property].error);
-//       return;
-//     }
-//     console.log(inputsValid);
-//     console.log("hihihihih");
-//     setFormValid(true);
-//     return;
-//   }
-// }, [inputState]);
-
-// const validForm = () => {
-//   const inputsValid = [];
-//   const inputsValue = [];
-//   for (const property in inputState) {
-//     inputsValid.push(inputState[property].valid);
-//     inputsValue.push(inputState[property].value);
-//     if (
-//           inputsValid.some((input) => input === false) ||
-//           inputsValue.some((input) => input === "") ||
-//           inputsValue.some((input) => input.length <= 3)
-//         ) {
-//           console.log("hohohohoh");
-//           console.log(inputState[property].error);
-//           return setFormValid(false);
-//         }
-//         console.log("hihihihih");
-//         return setFormValid(true);
-//   }
-// };
-
-// const handleSubmit = (e) => {
-//   e.preventDefault();
-//   const inputsValid = [];
-//   const inputsValue = [];
-
-//   if (formValid) {
-//     const employeeSheet = {
-//       id: employees.length + 100,
-//       firstName: inputState.firstName.value,
-//       lastName: inputState.lastName.value,
-//       birth: inputState.birth.value,
-//       startDate: inputState.startDate.value,
-//       street: inputState.street.value,
-//       city: inputState.city.value,
-//       state: inputState.state.value,
-//       zipCode: inputState.zipCode.value,
-//       department: inputState.department.value,
-//     };
-
-//     for (const property in inputState) {
-//       inputsValid.push(inputState[property].valid);
-//       inputsValue.push(inputState[property].value);
-//       console.log(inputsValue);
-//       if (!validForm) {
-//         console.log(inputState[property].error);
-//         console.log("valid not ok");
-//         return;
-//       }
-//       console.log("ok valid");
-//     }
-//     dispatch(addEmployee(employeeSheet));
-//     dispatch(reset());
-//     setDisplayModal(true);
-//   } else {
-//     console.log("form invalid");
-//   }
-// };
-
-// useEffect(() => {
-//   const inputsValid = [];
-//   const inputsValue = [];
-//   for (const property in inputState) {
-//     inputsValid.push(inputState[property].valid);
-//     inputsValue.push(inputState[property].value);
-//     console.log(inputsValue);
-//     if (
-//       inputsValid.some((input) => input === false) === true ||
-//       inputsValue.some((input) => input === "") === true
-//     ) {
-//       console.log(inputState[property].error);
-//       console.log("valid not ok");
-//       setFormValid(false);
-//       return;
-//     }
-//     setFormValid(true);
-//     console.log("ok valid");
-//   }
-// }, [inputState]);
-
-// const firstName = useSelector((state) => state.createEmployee.firstName);
-// const lastName = useSelector((state) => state.createEmployee.lastName);
-// const birth = useSelector((state) => state.createEmployee.birth);
-// const street = useSelector((state) => state.createEmployee.street);
-// const city = useSelector((state) => state.createEmployee.city);
-// const state = useSelector((state) => state.createEmployee.state);
-// const zipCode = useSelector((state) => state.createEmployee.zipCode);
-// const startDate = useSelector((state) => state.createEmployee.startDate);
-// const department = useSelector((state) => state.createEmployee.department);
-
-//const validForm = () => {
-//   if (
-//     firstName.valid === true &&
-//     lastName.valid === true &&
-//     birth.valid === true &&
-//     street.valid === true &&
-//     city.valid === true &&
-//     state.valid === true &&
-//     zipCode.valid === true &&
-//     startDate.valid === true &&
-//     department.valid === true &&
-//     department !== "" &&
-//     state !== "" &&
-//     birth !== "" &&
-//     startDate !== ""
-//   ) {
-//     setFormValid(true);
-//   }
-//   setFormValid(false);
-// };
-
-// const firstName = (state) =>
-//   useSelector(state.createEmployee.firstName.value);
-// const lastName = (state) => useSelector(state.createEmployee.lastName.value);
-// const birth = (state) => useSelector(state.createEmployee.birth.value);
-// const street = (state) => useSelector(state.createEmployee.street.value);
-// const city = (state) => useSelector(state.createEmployee.city.value);
-// const state = (state) => useSelector(state.createEmployee.state.value);
-// const zipCode = (state) => useSelector(state.createEmployee.zipCode.value);
-// const startDate = (state) =>
-//   useSelector(state.createEmployee.startDate.value);
-// const department = (state) =>
-//   useSelector(state.createEmployee.department.value);
-
-// const firstNameValid = (state) =>
-//   useSelector(state.createEmployee.firstName.valid);
-// const lastNameValid = (state) =>
-//   useSelector(state.createEmployee.lastName.valid);
-// const birthValid = (state) => useSelector(state.createEmployee.birth.valid);
-// const streetValid = (state) => useSelector(state.createEmployee.street.valid);
-// const cityValid = (state) => useSelector(state.createEmployee.city.valid);
-// const stateValid = (state) => useSelector(state.createEmployee.state.valid);
-// const zipCodeValid = (state) =>
-//   useSelector(state.createEmployee.zipCode.valid);
-// const startDateValid = (state) =>
-//   useSelector(state.createEmployee.startDate.valid);
-// const departmentValid = (state) =>
-//   useSelector(state.createEmployee.department.valid);
-
-// const modal = (state) => state.createEmployee.modal.display;
-
-//validInputText(inputFirstName);
-//console.log(validInputText(inputFirstName));
-//console.log(inputState.current);
-//console.log(inputFirstName);
-//console.log(inputFirstName.current.value);
-//const Id = employees.length + 100;
-
-// export default function CreateEmployee() {
-//   const dispatch = useDispatch();
-
-//   const employees = useSelector((state) => state.employeeList.data);
-
-//   const inputFirstName = useRef();
-//   const inputLastName = useRef();
-//   const inputBirth = useRef();
-//   const inputStreet = useRef();
-//   const inputCity = useRef();
-//   const inputState = useRef();
-//   const inputZipCode = useRef();
-//   const inputStartDate = useRef();
-//   const inputDepartment = useRef();
-
-//   //console.log(inputFirstName);
-//   //console.log(inputFirstName.current.value);
-
-//   //const firstName = useSelector(select.firstName);
-//   const lastName = useSelector(select.lastName);
-//   const birth = useSelector(select.birth);
-//   const street = useSelector(select.street);
-//   const city = useSelector(select.city);
-//   const state = useSelector(select.state);
-//   const zipCode = useSelector(select.zipCode);
-//   const startDate = useSelector(select.startDate);
-//   const department = useSelector(select.department);
-
-//   const firstNameValid = useSelector(select.firstNameValid);
-//   const lastNameValid = useSelector(select.lastNameValid);
-//   const birthValid = useSelector(select.birthValid);
-//   const streetValid = useSelector(select.streetValid);
-//   const cityValid = useSelector(select.cityValid);
-//   const stateValid = useSelector(select.stateValid);
-//   const zipCodeValid = useSelector(select.zipCodeValid);
-//   const startDateValid = useSelector(select.startDateValid);
-//   const departmentValid = useSelector(select.departmentValid);
-
-//   const Id = employees.length + 100;
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (
-//       firstNameValid === true &&
-//       lastNameValid === true &&
-//       birthValid === true &&
-//       streetValid === true &&
-//       cityValid === true &&
-//       stateValid === true &&
-//       zipCodeValid === true &&
-//       startDateValid === true &&
-//       departmentValid === true &&
-//       department !== "" &&
-//       state !== "" &&
-//       birth !== "" &&
-//       startDate !== ""
-//     ) {
-//       dispatch(
-//         addEmployee({
-//           Id,
-//           //firstName,
-//           lastName,
-//           birth,
-//           street,
-//           city,
-//           state,
-//           zipCode,
-//           startDate,
-//           department,
-//         })
-//       );
-
-//       const employeeSheet = {
-//         id: employees.length + 100,
-//         firstName: inputFirstName.current.value,
-//         // lastName: inputFirstName.current.value,
-//         // birth: inputFirstName.current.value,
-//         // startDate: inputFirstName.current.value,
-//         // street: inputFirstName.current.value,
-//         // city: inputFirstName.current.value,
-//         // state: inputFirstName.current.value,
-//         // zipCode: inputFirstName.current.value,
-//         // department: inputFirstName.current.value,
-//       };
-//       console.log(employeeSheet);
-//       dispatch(reset);
-//       dispatch(openModal(true));
-//       return console.log("form valid");
-//     }
-//     console.log("form error");
-//   };
