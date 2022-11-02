@@ -1,14 +1,16 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[javascript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "liveServer.settings.port": 5501,
   "cSpell.words": [
+    "combobox",
     "datepicker",
     "dropdownlist",
+    "dropup",
+    "hrnet",
     "reduxjs",
     "taglist"
   ]
 }
-

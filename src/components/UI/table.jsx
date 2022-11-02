@@ -11,10 +11,10 @@ export default function Table({
   dataNoFilter,
   data,
   setData,
-  dataSort,
-  setDataSort,
-  dataFilter,
-  setDataFilter,
+  dataSorted,
+  setDataSorted,
+  dataFiltered,
+  setDataFiltered,
   sorted,
   setSorted,
   filtered,
@@ -27,7 +27,8 @@ export default function Table({
   setSearchInput,
   categories,
   setSelect,
-
+  searchBar,
+  setSearchBar,
   className,
   classContent,
   classChevron,
@@ -38,19 +39,6 @@ export default function Table({
     const slice2 = date.slice(5, 7);
     const slice3 = date.slice(8, 10);
     return slice3 + "/" + slice2 + "/" + slice1;
-  };
-
-  /** MANAGE PAGE SYSTEM */
-  const pageNumbers = [];
-  const itemsTotal = data.length;
-  for (let i = 1; i <= Math.ceil(itemsTotal / itemsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-  const goPreviousPage = () => {
-    currentPage !== 1 && setCurrentPage(currentPage - 1);
-  };
-  const goNextPage = () => {
-    currentPage !== pageNumbers.length && setCurrentPage(currentPage + 1);
   };
 
   /** LIST OF NUMBER OF ENTRIES PER PAGE */
@@ -65,19 +53,19 @@ export default function Table({
       .replace(/\p{Diacritic}/gu, "");
     setSearchInput(inputContent);
     if (inputContent.length === 0) {
-      setData(dataNoFilter);
+      setSearchBar(false);
+      setDataFiltered(dataNoFilter);
     }
     if (inputContent.length >= 3) {
-      const dataFilter = data.filter((item) => {
+      const dataFilter = dataSorted.filter((item) => {
         return (
           item.firstName.toLowerCase().includes(inputContent.toLowerCase()) ||
           item.lastName.toLowerCase().includes(inputContent.toLowerCase()) ||
           item.department.toLowerCase().includes(inputContent.toLowerCase())
         );
       });
-      setFiltered(true);
-      //return setDataFilter(dataFilter);
-      return setData(dataFilter);
+      setSearchBar(true);
+      return setDataFiltered(dataFilter);
     }
   };
 
@@ -92,21 +80,59 @@ export default function Table({
 
   const sortIncreasing = (category) => {
     var _ = require("lodash");
-    console.log(data);
-    var sortedList = _.sortBy(data, titleKind[`${category}`]);
-    console.log(sortedList);
-    setSorted(true);
-    //return setDataSort(sortedList);
-    return setData(sortedList);
+    if (searchBar) {
+      const sortedList = _.sortBy(dataFiltered, titleKind[`${category}`]);
+      return setDataFiltered(sortedList);
+    } else if (!searchBar) {
+      const sortedList = _.sortBy(dataSorted, titleKind[`${category}`]);
+      return setDataSorted(sortedList);
+    }
   };
 
   const sortDescending = (category) => {
     var _ = require("lodash");
-    var sortedList = _.sortBy(data, titleKind[`${category}`]).reverse();
-    setSorted(true);
-    //return setDataSort(sortedList);
-    return setData(sortedList);
+    if (searchBar) {
+      const sortedList = _.sortBy(
+        dataFiltered,
+        titleKind[`${category}`]
+      ).reverse();
+      return setDataFiltered(sortedList);
+    } else if (!searchBar) {
+      const sortedList = _.sortBy(
+        dataSorted,
+        titleKind[`${category}`]
+      ).reverse();
+      return setDataSorted(sortedList);
+    }
   };
+
+  /** MANAGE PAGE SYSTEM */
+  const pageNumbers = [];
+
+  const itemsTotal = () => {
+    if (searchBar) {
+      return dataFiltered.length;
+    } else if (!searchBar) {
+      return dataSorted.length;
+    }
+  };
+
+  //const itemsTotal = data.length;
+  for (let i = 1; i <= Math.ceil(itemsTotal() / itemsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  console.log(currentPage);
+
+  const goPreviousPage = () => {
+    currentPage !== 1 && setCurrentPage(currentPage - 1);
+  };
+  const goNextPage = () => {
+    console.log(currentPage);
+    currentPage !== pageNumbers.length && setCurrentPage(currentPage + 1);
+  };
+
+  console.log(searchBar);
 
   return (
     <section className="form-background flex-column">
@@ -170,6 +196,14 @@ export default function Table({
 }
 
 // const sortDescending = (category) => {
+//   var _ = require("lodash");
+//   var sortedList = _.sortBy(data, titleKind[`${category}`]).reverse();
+//   setSorted(true);
+//   //return setDataSorted(sortedList);
+//   return setData(sortedList);
+// };
+
+// const sortDescending = (category) => {
 //   const dataMap = data.map((e, i) => {
 //     if (category === "Name") {
 //       return { i, value: e.lastName.toLowerCase() };
@@ -212,7 +246,7 @@ export default function Table({
 //     return a.value > b.value ? 1 : a.value < b.value ? -1 : 0;
 //   });
 //   const resultIncreasing = dataMap.map((v) => data[v.i]);
-//   setDataSort(true);
+//   setDataSorted(true);
 //   setData(resultIncreasing);
 //   return;
 // };

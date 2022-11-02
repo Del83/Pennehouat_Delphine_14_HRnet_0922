@@ -113,6 +113,15 @@ const formManagement = {
     state.state.value = "";
     state.startDate.value = "";
     state.department.value = "";
+    state.firstName.valid = null;
+    state.lastName.valid = null;
+    state.birth.valid = null;
+    state.street.valid = null;
+    state.city.valid = null;
+    state.zipCode.valid = null;
+    state.state.valid = null;
+    state.startDate.valid = null;
+    state.department.valid = null;
     return state;
   },
 };

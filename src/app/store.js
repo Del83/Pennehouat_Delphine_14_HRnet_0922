@@ -4,7 +4,6 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 /** SLICE */
 import { employeesSlice } from "../feature/employeesSlice";
 import { createEmployeeSlice } from "../feature/createEmployeeSlice";
-//import { handleInput, handleDate } from "../utils/postEmployees";
 
 const reducer = combineReducers({
   employeeList: employeesSlice.reducer,
@@ -13,15 +12,6 @@ const reducer = combineReducers({
 
 export const store = configureStore({
   reducer: reducer,
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware({
-  //     serializableCheck: {
-  //       ignoredActions: {
-  //         handleInput,
-  //         handleDate,
-  //       },
-  //     },
-  //   }),
 });
 
 // export const store = configureStore({

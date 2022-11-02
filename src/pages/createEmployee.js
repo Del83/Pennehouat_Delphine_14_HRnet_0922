@@ -51,6 +51,7 @@ export default function CreateEmployee() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const employeeSheet = {
       id: employees.length + 100,
       firstName: inputState.firstName.value,
@@ -66,14 +67,18 @@ export default function CreateEmployee() {
     if (formValid) {
       dispatch(addEmployee(employeeSheet));
       setDisplayModal(true);
+      setFormValid(false);
       setMessageModal("Employee Created !");
       dispatch(reset());
       return;
     }
     setDisplayModal(true);
+    //setFormValid(false);
     setMessageModal("Please fill in all the fields");
     return;
   };
+
+  console.log(formValid);
 
   useEffect(() => {
     dispatch(selectItem(select));
@@ -82,15 +87,21 @@ export default function CreateEmployee() {
     const inputsValid = [];
     for (const property in inputState) {
       inputsValid.push(inputState[property].valid);
-      if (
-        inputsValid.some((elem) => elem === false || elem === null) === true
-      ) {
-        setFormValid(false);
-        return;
-      }
-      setFormValid(true);
+      console.log(inputsValid);
+      //inputsValid.push(inputState[property].valid);
     }
+    if (
+      //inputsValid.every((elem) => elem === true) === true
+      inputsValid.some((elem) => elem === false || elem === null) === true
+    ) {
+      setFormValid(false);
+      return;
+    }
+    setFormValid(true);
+    return;
   }, [inputState, input, select, dispatch]);
+
+  console.log(formValid);
 
   return (
     <div className="create-employee">

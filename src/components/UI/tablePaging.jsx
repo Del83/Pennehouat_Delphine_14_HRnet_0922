@@ -4,7 +4,7 @@ import propTypes from "prop-types";
  * Table paging
  * @param {number} currentPage the current page
  * @param {array} pageNumbers the page numbers
- * @param {number} itemsTotal the total of the items
+ * @param {func} itemsTotal the total of the items
  * @param {func} goPreviousPage function to go to the previous page
  * @param {func} goNextPage function to go to the next page
  * @component
@@ -21,7 +21,7 @@ export default function Paging({
       <p className="entries-number">
         {" "}
         Showing <b>{currentPage}</b> to <b>{pageNumbers.length}</b> of{" "}
-        <b>{itemsTotal}</b> entries
+        <b>{itemsTotal()}</b> entries
       </p>
       <div className="pagination">
         <span
@@ -47,7 +47,7 @@ export default function Paging({
 Paging.propTypes = {
   currentPage: propTypes.number,
   pageNumbers: propTypes.array,
-  itemsTotal: propTypes.number,
+  itemsTotal: propTypes.func,
   goPreviousPage: propTypes.func,
   goNextPage: propTypes.func,
 };

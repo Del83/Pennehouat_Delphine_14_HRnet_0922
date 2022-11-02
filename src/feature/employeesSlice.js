@@ -10,17 +10,13 @@ const initialState = {
 export const employeesSlice = createSlice({
   name: "employeeList",
   initialState,
-  reducers: { 
+  reducers: {
     addEmployee: (state, action) => {
       const employees = state.data;
-      console.log(state.data);
       employees.push(action.payload);
-      console.log(employees);
       return state;
-    }
+    },
   },
 });
 
-export const {
-  addEmployee,
-} = employeesSlice.actions;
+export const { addEmployee } = employeesSlice.actions;
