@@ -5,9 +5,10 @@ import { useSelector } from "react-redux";
 /** IMPORT COMPONENTS */
 import Header from "../components/layout/header";
 import Side from "../components/layout/side";
-import Table from "../components/UI/table";
+//import Table from "../components/UI/table";
 import Footer from "../components/layout/footer";
 import Modal from "@del83/plugin_modal_p14/dist";
+import Table from "@del83/plugin_table_p14/dist";
 //import Modal from "../components/UI/modal";
 
 /** STYLE */
@@ -28,12 +29,9 @@ export default function EmployeesList() {
   const indexOfLastItem = itemsPerPage * currentPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const [dataSorted, setDataSorted] = useState(employees);
+  const [dataFiltered, setDataFiltered] = useState(employees);
   const [searchBar, setSearchBar] = useState(false);
-  let [dataFiltered, setDataFiltered] = useState(employees);
   const [currentItems, setCurrentItems] = useState([]);
-  //let currentItems;
-
-  const dataNoFilter = employees;
   const [searchInput, setSearchInput] = useState("");
   const [displayModal, setDisplayModal] = useState(false);
   const [messageModal, setMessageModal] = useState("");
@@ -72,7 +70,6 @@ export default function EmployeesList() {
       <Header />
       <Side />
       <Table
-        dataNoFilter={dataNoFilter}
         dataSorted={dataSorted}
         setDataSorted={setDataSorted}
         dataFiltered={dataFiltered}

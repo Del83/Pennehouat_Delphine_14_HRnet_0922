@@ -47,6 +47,12 @@ export default function InputDropdown({
     });
   };
 
+  window.onclick = function (e) {
+    if (!e.target.matches(".chevron")) {
+      setUnfolded(false);
+    }
+  };
+
   return (
     <div
       className={unfolded ? "dropdown-container folded" : "dropdown-container"}

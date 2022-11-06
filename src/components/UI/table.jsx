@@ -8,17 +8,10 @@ import Paging from "./tablePaging";
 import "../../styles/table.css";
 
 export default function Table({
-  dataNoFilter,
-  data,
-  setData,
   dataSorted,
   setDataSorted,
   dataFiltered,
   setDataFiltered,
-  sorted,
-  setSorted,
-  filtered,
-  setFiltered,
   currentItems,
   currentPage,
   setCurrentPage,
@@ -54,7 +47,7 @@ export default function Table({
     setSearchInput(inputContent);
     if (inputContent.length === 0) {
       setSearchBar(false);
-      setDataFiltered(dataNoFilter);
+      setDataFiltered(dataSorted);
     }
     if (inputContent.length >= 3) {
       const dataFilter = dataSorted.filter((item) => {
@@ -117,12 +110,9 @@ export default function Table({
     }
   };
 
-  //const itemsTotal = data.length;
   for (let i = 1; i <= Math.ceil(itemsTotal() / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
-
-  console.log(currentPage);
 
   const goPreviousPage = () => {
     currentPage !== 1 && setCurrentPage(currentPage - 1);
@@ -131,8 +121,6 @@ export default function Table({
     console.log(currentPage);
     currentPage !== pageNumbers.length && setCurrentPage(currentPage + 1);
   };
-
-  console.log(searchBar);
 
   return (
     <section className="form-background flex-column">

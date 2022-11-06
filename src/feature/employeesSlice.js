@@ -2,9 +2,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 /** DATA */
 import { EMPLOYEES_DATA } from "../data/employees";
+import { DATA_MOCK } from "../data/data_mock";
 
 const initialState = {
-  data: EMPLOYEES_DATA,
+  data: DATA_MOCK,
 };
 
 export const employeesSlice = createSlice({

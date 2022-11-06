@@ -51,7 +51,7 @@ export default function CreateEmployee() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log("errror");
     const employeeSheet = {
       id: employees.length + 100,
       firstName: inputState.firstName.value,
@@ -73,12 +73,11 @@ export default function CreateEmployee() {
       return;
     }
     setDisplayModal(true);
+
     //setFormValid(false);
     setMessageModal("Please fill in all the fields");
     return;
   };
-
-  console.log(formValid);
 
   useEffect(() => {
     dispatch(selectItem(select));
@@ -100,8 +99,6 @@ export default function CreateEmployee() {
     setFormValid(true);
     return;
   }, [inputState, input, select, dispatch]);
-
-  console.log(formValid);
 
   return (
     <div className="create-employee">
@@ -196,32 +193,29 @@ export default function CreateEmployee() {
           <section className="information">
             <h4>Employee information</h4>
             <div className="form-information">
-              <div className="form-profile-start-date">
-                <InputDate
-                  label="Start date"
-                  name="startDate"
-                  max={new Date()}
-                  defaultValue={new Date()}
-                  valid={inputState.startDate.valid}
-                  input={inputState.startDate.value}
-                  setInput={setInput}
-                />
-              </div>
-              <div className="form-department">
-                <InputDropdown
-                  label="Department"
-                  name="department"
-                  value={inputState.department.value}
-                  valid={inputState.department.valid}
-                  input={inputState.department.value}
-                  className="form-control"
-                  classContent="dropdown-content"
-                  classChevron="chevron"
-                  list={departmentsList}
-                  setInput={setInput}
-                  setSelect={setSelect}
-                />
-              </div>
+              <InputDate
+                label="Start date"
+                name="startDate"
+                max={new Date()}
+                defaultValue={new Date()}
+                valid={inputState.startDate.valid}
+                input={inputState.startDate.value}
+                setInput={setInput}
+              />
+
+              <InputDropdown
+                label="Department"
+                name="department"
+                value={inputState.department.value}
+                valid={inputState.department.valid}
+                input={inputState.department.value}
+                className="form-control"
+                classContent="dropdown-content"
+                classChevron="chevron"
+                list={departmentsList}
+                setInput={setInput}
+                setSelect={setSelect}
+              />
             </div>
           </section>
           <div className="create-button-ctn">

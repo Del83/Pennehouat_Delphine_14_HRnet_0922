@@ -98,12 +98,6 @@
   padding: 0%;
 }
 
-.form-address-state,
-.form-department {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .InputError {
   font-size: 0.625em;
   color: red;
@@ -177,6 +171,7 @@
   position: absolute;
   right: 25px;
   bottom: 35px;
+  cursor: pointer;
 }
 
 .unfolded {
@@ -187,9 +182,15 @@
   display: none;
 }
 
-@media (max-width: 930px) {
+@media (max-width: 768px) {
   .chevron {
-    bottom: 45px;
+    top: 24px;
+  }
+}
+
+@media (max-width: 425px) {
+  .chevron {
+    top: 37px;
   }
 }
 
