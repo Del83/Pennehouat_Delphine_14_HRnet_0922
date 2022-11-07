@@ -19,13 +19,9 @@
 
 ## Project
 
----
-
 REACT application for managing employee records. The application allows you to create a new employee and allows you to view the list of employees, sorted and filtered.
 
 ## Project technologies
-
----
 
 - [React](https://fr.reactjs.org/) (18.2.0)
 - [React-redux](https://react-redux.js.org/) (8.0.4)
@@ -36,14 +32,10 @@ REACT application for managing employee records. The application allows you to c
 
 ## Project prerequisites
 
----
-
 - [Node.js](https://nodejs.org/) (12.18.0)
 - [Yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) (1.22.19)
 
 ## Project installation
-
----
 
 Clone this repository : Sport See.
 
@@ -58,8 +50,6 @@ yarn install
 ```
 
 ## Project starting
-
----
 
 Start using the front-end
 
