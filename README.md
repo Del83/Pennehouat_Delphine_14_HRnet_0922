@@ -6,7 +6,11 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-![alt text](https://github.com/Del83/Pennehouat_Delphine_14_HRnet_0922/blob/master/src/assets/demo-page-createemployee.png "Demo create employee page app HR net")![alt text](https://github.com/Del83/Pennehouat_Delphine_14_HRnet_0922/blob/master/src/assets/demo-page-employeeslist.png "Demo employee list page app HR net")
+## ![alt text](https://github.com/Del83/Pennehouat_Delphine_14_HRnet_0922/blob/master/src/assets/demo-page-createemployee.png "Demo create employee page app HR net")
+
+---
+
+![alt text](https://github.com/Del83/Pennehouat_Delphine_14_HRnet_0922/blob/master/src/assets/demo-page-employeeslist.png "Demo employee list page app HR net")
 
 ## Table of Contents
 
