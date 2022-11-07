@@ -15,9 +15,3 @@ export const DEPARTMENTS_LIST = [
     name: "Legal",
   },
 ];
-
-//  "Sales",
-//   "Marketing",
-//   "Engineering",
-//   "Human Resources",
-//   "Legal"

@@ -1,11 +1,11 @@
 /** IMPORT REACT REDUX */
 import { createSlice } from "@reduxjs/toolkit";
 /** DATA */
-import { EMPLOYEES_DATA } from "../data/employees";
-import { DATA_MOCK } from "../data/data_mock";
+import { DATA_MOCK, DATA_MOCK_CATEGORIES } from "../data/data_mock";
 
 const initialState = {
   data: DATA_MOCK,
+  categories: DATA_MOCK_CATEGORIES,
 };
 
 export const employeesSlice = createSlice({

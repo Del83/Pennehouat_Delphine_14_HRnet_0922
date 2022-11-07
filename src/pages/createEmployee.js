@@ -2,35 +2,38 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 
-/** IMPORT UTILS */
+/** IMPORT ACTIONS */
 import { addEmployee } from "../feature/employeesSlice";
 import { reset } from "../feature/createEmployeeSlice";
-
-/** IMPORT COMPONENTS UI */
-import InputText from "../components/UI/form/input-text";
-import InputDropdown from "../components/UI/form/input-dropdown";
-import InputDate from "../components/UI/form/input-date";
-
 import {
   handleDate,
   handleInput,
   selectItem,
 } from "../feature/createEmployeeSlice";
 
-/** IMPORT DATA */
-import { STATES_LIST } from "../data/states";
-import { DEPARTMENTS_LIST } from "../data/departments";
-
 /** IMPORT COMPONENTS LAYOUT */
 import Header from "../components/layout/header";
 import Side from "../components/layout/side";
 import Footer from "../components/layout/footer";
 import Modal from "@del83/plugin_modal_p14/dist";
-//import Modal from "../components/UI/modal";
+
+/** IMPORT COMPONENTS UI */
+import InputText from "../components/UI/input-text";
+import InputDropdown from "../components/UI/input-dropdown";
+import InputDate from "../components/UI/input-date";
+
+/** IMPORT DATA */
+import { STATES_LIST } from "../data/states";
+import { DEPARTMENTS_LIST } from "../data/departments";
 
 /** STYLE */
 import "../styles/create.css";
+import "../styles/date.css";
 
+/**
+ * Employee create page
+ * @returns {JS} the page to create an employee
+ */
 export default function CreateEmployee() {
   const dispatch = useDispatch();
   const employees = useSelector((state) => state.employeeList.data);
@@ -51,7 +54,6 @@ export default function CreateEmployee() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("errror");
     const employeeSheet = {
       id: employees.length + 100,
       firstName: inputState.firstName.value,
@@ -73,8 +75,6 @@ export default function CreateEmployee() {
       return;
     }
     setDisplayModal(true);
-
-    //setFormValid(false);
     setMessageModal("Please fill in all the fields");
     return;
   };
@@ -86,13 +86,8 @@ export default function CreateEmployee() {
     const inputsValid = [];
     for (const property in inputState) {
       inputsValid.push(inputState[property].valid);
-      console.log(inputsValid);
-      //inputsValid.push(inputState[property].valid);
     }
-    if (
-      //inputsValid.every((elem) => elem === true) === true
-      inputsValid.some((elem) => elem === false || elem === null) === true
-    ) {
+    if (inputsValid.some((elem) => elem === false || elem === null) === true) {
       setFormValid(false);
       return;
     }
@@ -189,7 +184,6 @@ export default function CreateEmployee() {
               />
             </div>
           </section>
-
           <section className="information">
             <h4>Employee information</h4>
             <div className="form-information">
@@ -202,7 +196,6 @@ export default function CreateEmployee() {
                 input={inputState.startDate.value}
                 setInput={setInput}
               />
-
               <InputDropdown
                 label="Department"
                 name="department"

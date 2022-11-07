@@ -1,7 +1,7 @@
 /** IMPORT REACT REDUX */
 import { createSlice } from "@reduxjs/toolkit";
 
-/** DATA et ACTIONS */
+/** ACTIONS */
 import formManagement from "./createEmployeeActions";
 
 const initialState = {

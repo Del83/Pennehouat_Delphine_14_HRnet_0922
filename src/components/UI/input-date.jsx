@@ -1,10 +1,6 @@
-/** IMPORT REACT */
+/** TOOLS */
 import DatePicker from "react-widgets/DatePicker";
 import propTypes from "prop-types";
-
-/** STYLE */
-import "../../../styles/create.css";
-import "../../../styles/date.css";
 
 /**
  * React component : The input date of the form

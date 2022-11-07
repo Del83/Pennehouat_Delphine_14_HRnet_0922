@@ -1,11 +1,13 @@
+/** TOOLS */
 import propTypes from "prop-types";
 import { useState } from "react";
 
-import chevronDown from "../../../assets/chevronDown.png";
-import chevronUp from "../../../assets/chevronUp.png";
+/** IMPORT COMPONENT UI */
 import InputText from "./input-text";
-/** STYLE */
-import "../../../styles/create.css";
+
+/** ASSETS */
+import chevronDown from "../../assets/chevronDown.png";
+import chevronUp from "../../assets/chevronUp.png";
 
 /**
  * React component : The input dropdown of the form

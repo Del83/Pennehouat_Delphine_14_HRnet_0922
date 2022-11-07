@@ -1,3 +1,11 @@
+export const DATA_MOCK_CATEGORIES = [
+  "Name",
+  "Date of birth",
+  "Address",
+  "Date start",
+  "Department",
+];
+
 export const DATA_MOCK = [
   {
     Id: 100,

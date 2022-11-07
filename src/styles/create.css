@@ -1,17 +1,17 @@
 /*-------------------- FORM CONTAINER --------------------*/
 .form-background {
+  display: flex;
   background-color: rgba(115, 132, 45, 0.8);
   margin-left: 250px;
   margin-top: 0.3em;
   margin-bottom: 2em;
   border-radius: 0.625em 0em 0em 0.625em;
-  display: flex;
   color: rgba(0, 0, 0, 0.6);
 }
 
 .form-ctn {
-  background-color: white;
   width: 100%;
+  background-color: white;
   margin: 1em;
   border-radius: 10px;
   box-shadow: 0 0.5em 1em rgb(0 0 0 / 18%);
@@ -38,11 +38,11 @@
 .form-identity,
 .form-address,
 .form-information {
-  margin-right: 6.875em;
-  text-align: end;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: minmax(60px, auto);
+  margin-right: 6.875em;
+  text-align: end;
 }
 
 @media (max-width: 920px) {
@@ -72,24 +72,19 @@
   padding-right: 1.25em;
 }
 
-.form-date-ctnnnnnn {
-  display: flex;
-  align-items: center;
-}
-
 .form-control,
 .form-control-date {
-  height: 2.875em;
   width: 250px;
+  height: 2.875em;
   background-color: rgba(245, 245, 241, 1);
   border-color: rgba(147, 173, 24, 0.1);
   border-radius: 0.625em;
   border: #ccc 1px solid;
   margin-left: 1.25em;
-  letter-spacing: 3px;
-  font-size: 1em;
-  font-family: "Gill Sans", sans-serif;
   padding: 0 0.857em;
+  font-family: "Gill Sans", sans-serif;
+  font-size: 1em;
+  letter-spacing: 3px;
 }
 
 .form-control-date {
@@ -99,13 +94,9 @@
 }
 
 .InputError {
-  font-size: 0.625em;
   color: red;
+  font-size: 0.625em;
   letter-spacing: 3px;
-}
-
-.invalid {
-  border: red 2px solid;
 }
 
 @media (max-width: 920px) {
@@ -121,11 +112,11 @@
 
 /*-------------------- FORM LABEL --------------------*/
 .form-label {
-  font-size: 0.75em;
-  letter-spacing: 3px;
-  font-weight: 600;
   display: flex;
   align-items: center;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 3px;
 }
 
 @media (max-width: 425px) {
@@ -143,22 +134,22 @@
 }
 
 .dropdown-content {
+  width: 238px;
   max-height: 150px;
-  overflow: scroll;
-  background-color: rgba(245, 245, 241, 0.9);
   z-index: 1;
   position: absolute;
   right: 1.25em;
-  margin: auto;
-  text-align: left;
-  width: 238px;
-  list-style: none;
+  background-color: rgba(245, 245, 241, 0.9);
+  overflow: scroll;
   border-radius: 0 0 0.625em 0.625em;
-  padding: 15px 15px 5px 15px;
-  letter-spacing: 2px;
   border-bottom: 2px solid rgba(147, 173, 24, 0.1);
   border-left: 2px solid rgba(147, 173, 24, 0.1);
   border-right: 2px solid rgba(147, 173, 24, 0.1);
+  margin: auto;
+  padding: 15px 15px 5px 15px;
+  text-align: left;
+  letter-spacing: 2px;
+  list-style: none;
 }
 
 .dropdown-content > li {
@@ -198,19 +189,19 @@
 .create-button {
   width: 300px;
   height: 2.813em;
-  border-radius: 10px;
   background-color: rgba(115, 132, 45, 0.8);
   border: 0ch;
-  letter-spacing: 3px;
+  border-radius: 10px;
   color: rgba(255, 255, 255, 1);
-  font-weight: 600;
-  box-shadow: 0 0.5em 1em rgb(0 0 0 / 18%);
   font-size: 0.8em;
+  font-weight: 600;
+  letter-spacing: 3px;
+  box-shadow: 0 0.5em 1em rgb(0 0 0 / 18%);
 }
 
 .create-button-ctn {
-  text-align: end;
   margin: 1.875em;
+  text-align: end;
 }
 
 @media (max-width: 425px) {
