@@ -11,8 +11,6 @@
 
 ## Table of Contents
 
----
-
 - [Project](#Project)
 - [Project technologies](#project-technologies)
 - [Project prerequisites](#project-prerequisites)
