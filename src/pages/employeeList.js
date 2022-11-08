@@ -17,7 +17,7 @@ export default function EmployeesList() {
   const employees = useSelector((state) => state.employeeList.data);
   const categories = useSelector((state) => state.employeeList.categories);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const indexOfLastItem = itemsPerPage * currentPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const [dataSorted, setDataSorted] = useState(employees);
