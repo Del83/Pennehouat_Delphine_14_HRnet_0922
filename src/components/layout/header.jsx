@@ -43,7 +43,7 @@ export default function Header() {
       <section className="logo-ctn">
         <img className="logo" src={logo} alt="logo" width="130" height="130" />
         <div>
-          <h1>Health Wealth </h1>
+          <h1>Wealth Health </h1>
           <h1>HRnet</h1>
         </div>
       </section>
